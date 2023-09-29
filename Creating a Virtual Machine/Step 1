@@ -1,8 +1,10 @@
 gcloud auth list
+gcloud config set compute/region us-east4
+export REGION=us-east4
+export ZONE=us-east4-a
 
 gcloud compute instances create gcelab2 --machine-type e2-medium --zone=$ZONE
 gcloud compute instances create --help
-gcloud compute ssh gcelab2 --zone=$ZONE
-Y
+gcloud compute ssh gcelab2 --zone=$ZONE Y
 
 exit
