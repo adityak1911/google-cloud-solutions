@@ -25,3 +25,13 @@ gcloud compute firewall-rules list
 gcloud compute firewall-rules list --filter="network='default'"
 gcloud compute firewall-rules list --filter="NETWORK:'default' AND ALLOW:'icmp'"
 gcloud compute ssh gcelab2 --zone $ZONE
+gcloud compute firewall-rules list
+gcloud compute instances add-tags gcelab2 --tags http-server,https-server
+gcloud compute firewall-rules create default-allow-http --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:80 --source-ranges=0.0.0.0/0 --target-tags=http-server
+gcloud compute firewall-rules list --filter=ALLOW:'80'
+
+
+gcloud logging logs list
+gcloud logging logs list --filter="compute"
+gcloud logging read "resource.type=gce_instance" --limit 5
+gcloud logging read "resource.type=gce_instance AND labels.instance_name='gcelab2'" --limit 5
