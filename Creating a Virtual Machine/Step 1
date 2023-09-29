@@ -1,3 +1,8 @@
 gcloud auth list
 
 gcloud compute instances create gcelab2 --machine-type e2-medium --zone=$ZONE
+gcloud compute instances create --help
+gcloud compute ssh gcelab2 --zone=$ZONE
+Y
+
+exit
